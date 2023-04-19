@@ -1,6 +1,6 @@
 using API.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Logging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -23,7 +23,16 @@ namespace API
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             }));
+
             services.ConfigureJWT(_currentEnvironment.IsDevelopment(), "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAic9wSgfGhvqyEbba79FGacBil4dbAefdRtLHateWPEPxD78BJb5JaITEkV8EHH/05oCP5ObrS4TdCPgUWuGW2IPMb55q75EnqbCQU5bHNzvc474wfUfxe+Bz/N4oqT/TvcBne5ZbG3NduYYu2a8w398BbNfDcqF5dsyIJFGfgl8jkodXeYlvcbnxSKF7qnYXWVkod1hhXtdQUdQ2t++EfSDeDHIbc51UXV845wZ8Ewvg5Ft32GdLXlS4Aj0GrWDmK4EP8NB+AIPPWnUTUY0kyVegFrcHtd6wz06F72BpMN31vacv/hM+dbK1eUDg3J6d02ZFhyHa5nc0ss5MzXQHFwIDAQAB");
+
+            services.AddAuthorization(options =>
+                {
+                    options.AddPolicy("TestScope", policy => policy.Requirements.Add(new ScopeRequirement("testing-scope")));
+                }
+            );
+
+            services.AddSingleton<IAuthorizationHandler, ScopePermission>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -63,6 +72,10 @@ namespace API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
+
+            // app.UseMiddleware<AuthorizeScope>();
 
             app.UseEndpoints(endpoints =>
             {

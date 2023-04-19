@@ -2908,11 +2908,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Personal\\Nubitel\\API\\API\\API.csproj",
+      "projectUniqueName": "D:\\Personal\\Nubitel\\asp-react-keycloak\\API\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "D:\\Personal\\Nubitel\\API\\API\\API.csproj",
+      "projectPath": "D:\\Personal\\Nubitel\\asp-react-keycloak\\API\\API\\API.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\Personal\\Nubitel\\API\\API\\obj\\",
+      "outputPath": "D:\\Personal\\Nubitel\\asp-react-keycloak\\API\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
