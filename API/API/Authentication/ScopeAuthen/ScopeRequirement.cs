@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace API.Authentication
+namespace API.Authentication.ScopeAuthen
 {
     public class ScopeRequirement : IAuthorizationRequirement
     {
